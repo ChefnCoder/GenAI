@@ -1,0 +1,46 @@
+[
+  {
+    "timestamp": "2026-04-14T18:01:32.047Z",
+    "prompt": "hi",
+    "response": "Hi there! How can I assist you today?",
+    "tokens": {
+      "input": 2,
+      "output": 10
+    },
+    "cost_usd": 0.0000063,
+    "latency_ms": 2560
+  },
+  {
+    "timestamp": "2026-04-14T18:02:00.841Z",
+    "prompt": "define photosynthesis",
+    "response": "**Photosynthesis** is a biochemical process used by green plants, algae, and some types of bacteria to convert light energy (typically from the sun) into chemical energy.\n\nHere's a breakdown of the key aspects:\n\n1.  **Energy Conversion:** It's the primary mechanism by which solar energy is captured and transformed into a usable form of energy for living organisms.\n2.  **Raw Materials (Inputs):**\n    *   **Carbon Dioxide (CO2):** Absorbed from the atmosphere.\n    *   **Water (H2O):** Absorbed from the soil (in plants) or surrounding environment.\n    *   **Light Energy:** Usually from sunlight.\n3.  **Products (Outputs):**\n    *   **Glucose (C6H12O6):** A sugar that serves as the organism's primary food source (chemical energy). It can be used immediately for energy, stored as starch, or used to build other organic molecules.\n    *   **Oxygen (O2):** Released into the atmosphere as a byproduct.\n4.  **Location:**\n    *   In eukaryotes (plants and algae), photosynthesis primarily occurs in specialized organelles called **chloroplasts**.\n    *   In prokaryotes (like cyanobacteria), the process takes place in the cytoplasm and across cell membranes.\n5.  **Key Pigment:** The process relies on light-absorbing pigments, most notably **chlorophyll**, which gives plants their green color and is crucial for capturing light energy.\n\n**The generalized chemical equation for photosynthesis is:**\n\n**6CO2 + 6H2O + Light Energy → C6H12O6 + 6O2**\n(Carbon Dioxide + Water + Light Energy → Glucose + Oxygen)\n\n**Significance:**\n\nPhotosynthesis is fundamental to life on Earth because:\n*   It forms the **base of nearly all food webs**, as photosynthetic organisms (producers) create the organic matter that nourishes almost all other life forms.\n*   It is responsible for producing most of the **oxygen in our atmosphere**, which is essential for aerobic respiration in most organisms.",
+    "tokens": {
+      "input": 3,
+      "output": 445
+    },
+    "cost_usd": 0.00026745,
+    "latency_ms": 9132
+  },
+  {
+    "timestamp": "2026-04-14T18:02:46.813Z",
+    "prompt": "under 50 words define photosynthesis",
+    "response": "Photosynthesis is the process where green plants, algae, and some bacteria convert light energy into chemical energy. Using sunlight, water, and carbon dioxide, they produce glucose (sugar) for food and release oxygen as a byproduct. This fundamental process sustains most life on Earth.",
+    "tokens": {
+      "input": 8,
+      "output": 54
+    },
+    "cost_usd": 0.0000336,
+    "latency_ms": 2134
+  },
+  {
+    "timestamp": "2026-04-15T07:14:33.801Z",
+    "prompt": "define phitosyntheis in 50 words",
+    "response": "Photosynthesis is the process by which plants and other organisms convert light energy into chemical energy. Using sunlight, carbon dioxide, and water, they produce glucose (sugars) for food and release oxygen. This vital process, happening in chloroplasts, forms the basis of most food chains, sustaining life and providing breathable air on Earth.",
+    "tokens": {
+      "input": 12,
+      "output": 67
+    },
+    "cost_usd": 0.000042,
+    "latency_ms": 5336
+  }
+]
