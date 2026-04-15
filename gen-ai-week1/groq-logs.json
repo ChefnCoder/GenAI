@@ -1,0 +1,13 @@
+[
+  {
+    "timestamp": "2026-04-15T13:21:21.000Z",
+    "prompt": "hi",
+    "response": "Hi. How can I assist you today?",
+    "tokens": {
+      "input": 36,
+      "output": 10
+    },
+    "cost_usd": 0.00002914,
+    "latency_ms": 653
+  }
+]

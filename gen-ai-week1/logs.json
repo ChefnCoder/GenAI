@@ -42,5 +42,16 @@
     },
     "cost_usd": 0.000042,
     "latency_ms": 5336
+  },
+  {
+    "timestamp": "2026-04-15T12:51:44.000Z",
+    "prompt": "hi",
+    "response": "Hello! How can I help you today?",
+    "tokens": {
+      "input": 2,
+      "output": 9
+    },
+    "cost_usd": 0.00000285,
+    "latency_ms": 1074
   }
 ]
