@@ -9,5 +9,82 @@
     },
     "cost_usd": 0.00002914,
     "latency_ms": 653
+  },
+  {
+    "timestamp": "2026-06-17T03:50:44.141Z",
+    "prompt": "hi",
+    "response": "It's nice to meet you. Is there something I can help you with or would you like to chat?",
+    "tokens": {
+      "input": 36,
+      "output": 23
+    },
+    "cost_usd": 0.00003941,
+    "latency_ms": 490
+  },
+  {
+    "timestamp": "2026-06-17T03:50:58.626Z",
+    "prompt": "tELL ME A JOKE",
+    "response": "Here's one:\n\nWhat do you call a fake noodle?\n\nAn impasta!\n\nHope that made you laugh! Do you want to hear another one?",
+    "tokens": {
+      "input": 41,
+      "output": 32
+    },
+    "cost_usd": 0.00004947,
+    "latency_ms": 425
+  },
+  {
+    "timestamp": "2026-06-17T03:51:06.773Z",
+    "prompt": "HINDI JOKE",
+    "response": "एक आदमी डॉक्टर के पास गया और बोला, \"डॉक्टर साहब, मुझे भूलने की बीमारी हो गई है।\"\nडॉक्टर ने पूछा, \"कब से?\"\nआदमी ने कहा, \"कौन सी बीमारी?\"",
+    "tokens": {
+      "input": 40,
+      "output": 75
+    },
+    "cost_usd": 0.00008285,
+    "latency_ms": 516
+  },
+  {
+    "timestamp": "2026-06-17T03:51:19.485Z",
+    "prompt": "HEHE",
+    "response": "HEHE back at you. What's got you laughing today?",
+    "tokens": {
+      "input": 37,
+      "output": 14
+    },
+    "cost_usd": 0.00003289,
+    "latency_ms": 371
+  },
+  {
+    "timestamp": "2026-06-17T03:51:25.767Z",
+    "prompt": "YOUUUU",
+    "response": "It looks like you're excited about something. What's going on? Want to talk about it? I'm all ears.",
+    "tokens": {
+      "input": 38,
+      "output": 26
+    },
+    "cost_usd": 0.00004296,
+    "latency_ms": 412
+  },
+  {
+    "timestamp": "2026-06-17T03:51:31.498Z",
+    "prompt": "YEAAAAA",
+    "response": "YEAAAAA back at ya. What's got you so excited? Want to talk about it?",
+    "tokens": {
+      "input": 38,
+      "output": 21
+    },
+    "cost_usd": 0.00003901,
+    "latency_ms": 368
+  },
+  {
+    "timestamp": "2026-06-17T03:51:48.116Z",
+    "prompt": "I WONT SAY....ITS SECRET",
+    "response": "It sounds like you're keeping a secret. That's okay, secrets can be fun and exciting. I won't pry or try to guess what it is. If you ever feel like sharing, I'm here to listen, but for now, your secret is safe with me. Would you like to talk about something else or just keep the mystery alive for now?",
+    "tokens": {
+      "input": 42,
+      "output": 74
+    },
+    "cost_usd": 0.00008324,
+    "latency_ms": 798
   }
 ]
