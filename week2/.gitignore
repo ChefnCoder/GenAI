@@ -1,3 +1,4 @@
 .env
 node_modules/
-rag/
+rag/vectorstore.json
+rag/sample.txt
