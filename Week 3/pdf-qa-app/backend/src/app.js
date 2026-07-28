@@ -8,10 +8,10 @@ import dotenv from 'dotenv'
 import { rateLimit } from 'express-rate-limit'
 
 // import all route handlers - each file handles one endpoint group
-// import uploadRoute from './routes/upload.js'
-// import chatRoute from './routes/chat.js'
-// import conversationsRoute from './routes/conversations.js'
-// import metricsRoute from './routes/metrics.js'
+import uploadRoute from './routes/upload.js'
+import chatRoute from './routes/chat.js'
+import conversationsRoute from './routes/conversations.js'
+import metricsRoute from './routes/metrics.js'
 
 // global error handler - catches all errors thrown in routes
 import errorHandler from './middleware/errorHandler.js'
@@ -48,10 +48,10 @@ app.use(limiter)
 // GET /conversations/... → handled by conversationsRoute
 // GET /metrics/... → handled by metricsRoute
 
-// app.use('/upload', uploadRoute)
-// app.use('/chat', chatRoute)
-// app.use('/conversations', conversationsRoute)
-// app.use('/metrics', metricsRoute)
+app.use('/upload', uploadRoute)
+app.use('/chat', chatRoute)
+app.use('/conversations', conversationsRoute)
+app.use('/metrics', metricsRoute)
 
 // health check endpoint - used by Railway/Render to verify app is alive
 // returns 200 OK with timestamp - no auth needed
