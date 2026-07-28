@@ -43,10 +43,10 @@ export default function AuthModal({ onAuthSuccess }) {
             <Sparkles className="w-6 h-6" />
           </div>
           <h2 className="text-2xl font-extrabold text-slate-100">
-            {isLogin ? 'Welcome Back to DocuMind' : 'Create Your DocuMind Account'}
+            {isLogin ? 'Welcome Back to Parchment AI' : 'Create Your Parchment AI Account'}
           </h2>
           <p className="text-slate-400 text-sm mt-1">
-            {isLogin ? 'Sign in to access your PDFs and chat history.' : 'Get your isolated RAG workspace and telemetry.'}
+            {isLogin ? 'Sign in to access your PDFs and chat history.' : 'Get your private, intelligent document workspace.'}
           </p>
 
           {/* Quick Demo Credentials Badge */}

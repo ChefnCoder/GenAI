@@ -60,7 +60,7 @@ export default function App() {
             </div>
             <div>
               <span className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-purple-300">
-                DocuMind
+                Parchment AI
               </span>
               <span className="hidden sm:inline-block ml-2 px-2 py-0.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-mono rounded-md">
                 v1.0 RAG
@@ -72,31 +72,28 @@ export default function App() {
             <nav className="flex items-center gap-2 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800">
               <button
                 onClick={() => setActiveTab('upload')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 ${
-                  activeTab === 'upload'
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 ${activeTab === 'upload'
                     ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-                }`}
+                  }`}
               >
                 <FileText className="w-4 h-4" /> Upload
               </button>
               <button
                 onClick={() => setActiveTab('chat')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 ${
-                  activeTab === 'chat'
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 ${activeTab === 'chat'
                     ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-                }`}
+                  }`}
               >
                 <MessageSquare className="w-4 h-4" /> Chat Q&A
               </button>
               <button
                 onClick={() => setActiveTab('metrics')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 ${
-                  activeTab === 'metrics'
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 ${activeTab === 'metrics'
                     ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-                }`}
+                  }`}
               >
                 <BarChart3 className="w-4 h-4" /> Telemetry
               </button>
