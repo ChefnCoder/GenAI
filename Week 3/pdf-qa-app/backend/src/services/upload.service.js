@@ -43,8 +43,12 @@ export const processPDF = async (file, user_id) => {
     const chromaUrl = process.env.CHROMA_URL || 'http://localhost:8000'
     const urlObj = new URL(chromaUrl)
     const isSsl = urlObj.protocol === 'https:'
+    const port = urlObj.port ? parseInt(urlObj.port) : (isSsl ? 443 : 80)
+    
     const client = new ChromaClient({
-      path: `${urlObj.protocol}//${urlObj.host}`
+      host: urlObj.hostname,
+      port: port,
+      ssl: isSsl
     })
     const collection = await client.getOrCreateCollection({
       name: `pdf_${pdf_id}`,
