@@ -20,7 +20,7 @@ import {
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 const TEST_USER_ID = '05c1ac4b-c792-4097-852f-b2b8f36b7873'
 
-export default function ChatPage({ activePdfId }) {
+export default function ChatPage({ userId, activePdfId }) {
   const [conversations, setConversations] = useState([])
   const [activeConversationId, setActiveConversationId] = useState(null)
   const [messages, setMessages] = useState([])
@@ -30,19 +30,27 @@ export default function ChatPage({ activePdfId }) {
   const chatEndRef = useRef(null)
 
   const fetchConversations = async () => {
+    if (!userId) return
     try {
-      const res = await axios.get(`${API_URL}/conversations/${TEST_USER_ID}`)
+      const res = await axios.get(`${API_URL}/conversations/${userId}`)
       setConversations(res.data)
+      if (res.data.length > 0 && !activeConversationId) {
+        loadConversationMessages(res.data[0].conversation_id, res.data[0].pdf_id)
+      }
     } catch (err) {
       console.error('Failed to fetch conversations:', err)
     }
   }
 
-  const loadConversationMessages = async (convId) => {
+  const loadConversationMessages = async (convId, pdfId) => {
+    if (!userId) return
     try {
-      const res = await axios.get(`${API_URL}/conversations/${TEST_USER_ID}?conversation_id=${convId}`)
+      const res = await axios.get(`${API_URL}/conversations/${userId}?conversation_id=${convId}`)
       setMessages(res.data)
       setActiveConversationId(convId)
+      if (pdfId) {
+        localStorage.setItem('documind_active_pdf_id', pdfId)
+      }
     } catch (err) {
       console.error('Failed to fetch messages:', err)
     }
@@ -50,7 +58,7 @@ export default function ChatPage({ activePdfId }) {
 
   useEffect(() => {
     fetchConversations()
-  }, [])
+  }, [userId])
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -62,7 +70,7 @@ export default function ChatPage({ activePdfId }) {
 
   const handleSend = async (e) => {
     e.preventDefault()
-    if (!inputMessage.trim() || sending || !activePdfId) return
+    if (!inputMessage.trim() || sending || !activePdfId || !userId) return
 
     const userText = inputMessage.trim()
     setInputMessage('')
@@ -80,7 +88,7 @@ export default function ChatPage({ activePdfId }) {
     try {
       const res = await axios.post(`${API_URL}/chat`, {
         pdf_id: activePdfId,
-        user_id: TEST_USER_ID,
+        user_id: userId,
         message: userText,
         conversation_id: activeConversationId || undefined
       })
@@ -123,16 +131,6 @@ export default function ChatPage({ activePdfId }) {
     setMessages([])
   }
 
-  if (!activePdfId) {
-    return (
-      <div className="max-w-4xl mx-auto px-4 py-20 text-center">
-        <FileText className="w-16 h-16 mx-auto mb-4 text-indigo-400 opacity-60" />
-        <h2 className="text-2xl font-bold text-slate-200 mb-2">No Active PDF Selected</h2>
-        <p className="text-slate-400 mb-6">Please upload a PDF document first to initiate AI questions & answers.</p>
-      </div>
-    )
-  }
-
   return (
     <div className="flex h-[calc(100vh-5rem)] max-w-7xl mx-auto px-4 py-4 gap-6">
       {/* Sidebar Conversation List */}
@@ -152,7 +150,7 @@ export default function ChatPage({ activePdfId }) {
             conversations.map((c) => (
               <button
                 key={c.conversation_id}
-                onClick={() => loadConversationMessages(c.conversation_id)}
+                onClick={() => loadConversationMessages(c.conversation_id, c.pdf_id)}
                 className={`w-full text-left p-3 rounded-xl transition flex flex-col gap-1 border ${
                   activeConversationId === c.conversation_id
                     ? 'bg-indigo-500/10 border-indigo-500/40 text-indigo-300'

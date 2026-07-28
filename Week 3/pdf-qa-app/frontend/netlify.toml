@@ -1,0 +1,12 @@
+# netlify.toml - Configuration for deploying React Vite app on Netlify
+
+[build]
+  base = "Week 3/pdf-qa-app/frontend"
+  publish = "dist"
+  command = "npm run build"
+
+# Redirect all routing requests to index.html for React Router / SPA support
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

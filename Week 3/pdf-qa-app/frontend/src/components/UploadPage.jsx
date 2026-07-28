@@ -5,7 +5,7 @@ import { UploadCloud, FileText, CheckCircle2, AlertCircle, ArrowRight, Loader2 }
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 const TEST_USER_ID = '05c1ac4b-c792-4097-852f-b2b8f36b7873'
 
-export default function UploadPage({ onUploadSuccess }) {
+export default function UploadPage({ userId, onUploadSuccess }) {
   const [file, setFile] = useState(null)
   const [isDragging, setIsDragging] = useState(false)
   const [uploading, setUploading] = useState(false)
@@ -52,7 +52,7 @@ export default function UploadPage({ onUploadSuccess }) {
 
     const formData = new FormData()
     formData.append('pdf', file)
-    formData.append('user_id', TEST_USER_ID)
+    formData.append('user_id', userId)
 
     try {
       const response = await axios.post(`${API_URL}/upload`, formData, {

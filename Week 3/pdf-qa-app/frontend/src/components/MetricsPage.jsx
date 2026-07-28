@@ -4,21 +4,24 @@ import { Activity, DollarSign, Clock, Hash, AlertTriangle, CheckCircle, RefreshC
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
-export default function MetricsPage({ activePdfId }) {
+export default function MetricsPage({ userId, activePdfId }) {
   const [metrics, setMetrics] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   const fetchMetrics = async () => {
-    if (!activePdfId) return
+    if (!userId && !activePdfId) return
     setLoading(true)
     setError(null)
     try {
-      const res = await axios.get(`${API_URL}/metrics/${activePdfId}`)
+      const url = activePdfId
+        ? `${API_URL}/metrics/${activePdfId}`
+        : `${API_URL}/metrics/user/${userId}`
+      const res = await axios.get(url)
       setMetrics(res.data)
     } catch (err) {
       console.error(err)
-      setError('Failed to load metrics for the active PDF.')
+      setError('Failed to load metrics.')
     } finally {
       setLoading(false)
     }
@@ -26,14 +29,14 @@ export default function MetricsPage({ activePdfId }) {
 
   useEffect(() => {
     fetchMetrics()
-  }, [activePdfId])
+  }, [userId, activePdfId])
 
-  if (!activePdfId) {
+  if (!userId && !activePdfId) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center text-slate-400">
         <Activity className="w-16 h-16 mx-auto mb-4 text-indigo-400 opacity-60" />
-        <h2 className="text-2xl font-bold text-slate-200 mb-2">No Document Selected</h2>
-        <p className="text-slate-400">Upload a PDF or select an active document to view hallucination & cost telemetry.</p>
+        <h2 className="text-2xl font-bold text-slate-200 mb-2">No Document or User Selected</h2>
+        <p className="text-slate-400">Please sign in to view hallucination & cost telemetry.</p>
       </div>
     )
   }
@@ -44,7 +47,11 @@ export default function MetricsPage({ activePdfId }) {
         <div>
           <h1 className="text-3xl font-extrabold text-slate-100">Telemetry & Analytics</h1>
           <p className="text-slate-400 text-sm mt-1">
-            Real-time observability metrics for PDF ID: <span className="font-mono text-indigo-400">{activePdfId}</span>
+            {activePdfId ? (
+              <>Real-time observability metrics for PDF ID: <span className="font-mono text-indigo-400">{activePdfId}</span></>
+            ) : (
+              <>Aggregated user account telemetry across all documents</>
+            )}
           </p>
         </div>
         <button

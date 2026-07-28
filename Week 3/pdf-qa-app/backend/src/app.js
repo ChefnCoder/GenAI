@@ -12,6 +12,7 @@ import uploadRoute from './routes/upload.js'
 import chatRoute from './routes/chat.js'
 import conversationsRoute from './routes/conversations.js'
 import metricsRoute from './routes/metrics.js'
+import authRoute from './routes/auth.js'
 
 // global error handler - catches all errors thrown in routes
 import errorHandler from './middleware/errorHandler.js'
@@ -21,33 +22,18 @@ dotenv.config()
 // create the Express app instance
 const app = express()
 
-// cors() - allows all origins by default
-// in production you'd restrict to: cors({ origin: 'https://yourfrontend.vercel.app' })
 app.use(cors())
-
-// express.json() - parses incoming JSON request bodies
-// without this, req.body is undefined for JSON requests
 app.use(express.json())
 
-// rate limiter config:
-// windowMs: 15 minutes window
-// max: 100 requests per IP per window
-// after 100 requests → returns 429 with the error message
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000,  // 15 minutes in milliseconds
+    windowMs: 15 * 60 * 1000,
     max: 100,
     message: { error: 'Too many requests, slow down.' }
 })
 
-// apply rate limiter to ALL routes
 app.use(limiter)
 
-// mount routes at their base paths
-// POST /upload → handled by uploadRoute
-// POST /chat → handled by chatRoute
-// GET /conversations/... → handled by conversationsRoute
-// GET /metrics/... → handled by metricsRoute
-
+app.use('/auth', authRoute)
 app.use('/upload', uploadRoute)
 app.use('/chat', chatRoute)
 app.use('/conversations', conversationsRoute)
