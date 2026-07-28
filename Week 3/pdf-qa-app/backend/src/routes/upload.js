@@ -4,6 +4,13 @@ import { uploadPDF } from '../controllers/upload.controller.js'
 
 const router = express.Router()
 
+import fs from 'fs'
+
+// ensure uploads directory exists
+if (!fs.existsSync('uploads')) {
+    fs.mkdirSync('uploads', { recursive: true })
+}
+
 // multer config stays in route file — it's transport/middleware concern, not business logic
 const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, 'uploads/'),
