@@ -1,3 +1,4 @@
 chromadb[pydantic-v2]
 fastapi
 uvicorn
+opentelemetry-instrumentation-fastapi
