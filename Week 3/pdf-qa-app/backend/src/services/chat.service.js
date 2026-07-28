@@ -43,7 +43,9 @@ export const processChat = async ({ pdf_id, user_id, message, conversation_id })
   const queryVector = await embeddings.embedQuery(message)
 
   // STEP 4: retrieve top-k chunks from ChromaDB
-  const client = new ChromaClient({ path: process.env.CHROMA_URL || 'http://localhost:8000' })
+  const chromaUrl = process.env.CHROMA_URL || 'http://localhost:8000'
+  const urlObj = new URL(chromaUrl)
+  const client = new ChromaClient({ path: `${urlObj.protocol}//${urlObj.host}` })
   const collection = await client.getCollection({
     name: `pdf_${pdf_id}`,
     embeddingFunction: { generate: async (texts) => [] }

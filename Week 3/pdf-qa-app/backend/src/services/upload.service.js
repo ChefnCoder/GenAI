@@ -40,7 +40,11 @@ export const processPDF = async (file, user_id) => {
     const pdf_id = uuidv4()
 
     // connect to ChromaDB and create collection
-    const client = new ChromaClient({ path: process.env.CHROMA_URL || 'http://localhost:8000' })
+    const chromaUrl = process.env.CHROMA_URL || 'http://localhost:8000'
+    const urlObj = new URL(chromaUrl)
+    const client = new ChromaClient({
+      path: `${urlObj.protocol}//${urlObj.host}`
+    })
     const collection = await client.getOrCreateCollection({
       name: `pdf_${pdf_id}`,
       metadata: { 'hnsw:space': 'cosine' },
