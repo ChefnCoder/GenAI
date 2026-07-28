@@ -42,6 +42,7 @@ export const processPDF = async (file, user_id) => {
     // connect to ChromaDB and create collection
     const chromaUrl = process.env.CHROMA_URL || 'http://localhost:8000'
     const urlObj = new URL(chromaUrl)
+    const isSsl = urlObj.protocol === 'https:'
     const client = new ChromaClient({
       path: `${urlObj.protocol}//${urlObj.host}`
     })

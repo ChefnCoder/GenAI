@@ -17,6 +17,7 @@ export const uploadPDF = async (req, res, next) => {
         res.status(200).json(result)
 
     } catch (err) {
+        console.error('PDF Upload Processing Error:', err)
         next(err)
     }
 }
