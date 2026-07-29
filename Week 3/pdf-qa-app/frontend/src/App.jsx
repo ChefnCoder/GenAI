@@ -132,7 +132,7 @@ export default function App() {
             onSessionStarted={() => setIsNewUpload(false)}
           />
         )}
-        {activeTab === 'metrics' && <MetricsPage activePdfId={activePdfId} />}
+        {activeTab === 'metrics' && <MetricsPage userId={user?.id} activePdfId={activePdfId} />}
       </main>
     </div>
   )

@@ -8,13 +8,14 @@ export default function MetricsPage({ userId, activePdfId }) {
   const [metrics, setMetrics] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [viewScope, setViewScope] = useState('user') // 'user' (aggregated) or 'pdf' (active doc)
 
   const fetchMetrics = async () => {
     if (!userId && !activePdfId) return
     setLoading(true)
     setError(null)
     try {
-      const url = activePdfId
+      const url = (viewScope === 'pdf' && activePdfId)
         ? `${API_URL}/metrics/${activePdfId}`
         : `${API_URL}/metrics/user/${userId}`
       const res = await axios.get(url)
@@ -29,35 +30,68 @@ export default function MetricsPage({ userId, activePdfId }) {
 
   useEffect(() => {
     fetchMetrics()
-  }, [userId, activePdfId])
+  }, [userId, activePdfId, viewScope])
 
   if (!userId && !activePdfId) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center text-slate-400">
         <Activity className="w-16 h-16 mx-auto mb-4 text-indigo-400 opacity-60" />
-        <h2 className="text-2xl font-bold text-slate-200 mb-2">No Document or User Selected</h2>
-        <p className="text-slate-400">Please sign in to view hallucination & cost telemetry.</p>
+        <h2 className="text-2xl font-bold text-slate-200 mb-2">No User Signed In</h2>
+        <p className="text-slate-400">Please sign in to view your aggregated telemetry & cost metrics.</p>
       </div>
     )
   }
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-3xl font-extrabold text-slate-100">Telemetry & Analytics</h1>
           <p className="text-slate-400 text-sm mt-1">
-            {activePdfId ? (
-              <>Real-time observability metrics for PDF ID: <span className="font-mono text-indigo-400">{activePdfId}</span></>
+            {viewScope === 'user' ? (
+              <>Showing <strong>aggregated account telemetry</strong> across all your uploaded documents.</>
             ) : (
-              <>Aggregated user account telemetry across all documents</>
+              <>Showing metrics for active PDF: <span className="font-mono text-indigo-400">{activePdfId}</span></>
             )}
           </p>
         </div>
-        <button
-          onClick={fetchMetrics}
-          disabled={loading}
-          className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-medium rounded-xl flex items-center gap-2 transition"
+
+        <div className="flex items-center gap-3">
+          {activePdfId && (
+            <div className="flex bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs font-medium">
+              <button
+                onClick={() => setViewScope('user')}
+                className={`px-3 py-1.5 rounded-lg transition ${
+                  viewScope === 'user'
+                    ? 'bg-indigo-600 text-white shadow-md'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                All Documents
+              </button>
+              <button
+                onClick={() => setViewScope('pdf')}
+                className={`px-3 py-1.5 rounded-lg transition ${
+                  viewScope === 'pdf'
+                    ? 'bg-indigo-600 text-white shadow-md'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                Current PDF
+              </button>
+            </div>
+          )}
+
+          <button
+            onClick={fetchMetrics}
+            disabled={loading}
+            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-medium rounded-xl flex items-center gap-2 transition"
+          >
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-indigo-400' : ''}`} />
+            Refresh
+          </button>
+        </div>
+      </div>
         >
           <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} /> Refresh
         </button>
