@@ -92,10 +92,6 @@ export default function MetricsPage({ userId, activePdfId }) {
           </button>
         </div>
       </div>
-        >
-          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} /> Refresh
-        </button>
-      </div>
 
       {error && (
         <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm">
