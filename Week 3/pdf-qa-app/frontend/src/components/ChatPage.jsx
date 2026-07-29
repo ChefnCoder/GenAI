@@ -20,7 +20,7 @@ import {
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 const TEST_USER_ID = '05c1ac4b-c792-4097-852f-b2b8f36b7873'
 
-export default function ChatPage({ userId, activePdfId }) {
+export default function ChatPage({ userId, activePdfId, isNewUpload, onSessionStarted }) {
   const [conversations, setConversations] = useState([])
   const [activeConversationId, setActiveConversationId] = useState(null)
   const [messages, setMessages] = useState([])
@@ -29,12 +29,20 @@ export default function ChatPage({ userId, activePdfId }) {
   const [expandedSources, setExpandedSources] = useState({})
   const chatEndRef = useRef(null)
 
+  useEffect(() => {
+    if (isNewUpload) {
+      setActiveConversationId(null)
+      setMessages([])
+      if (onSessionStarted) onSessionStarted()
+    }
+  }, [isNewUpload])
+
   const fetchConversations = async () => {
     if (!userId) return
     try {
       const res = await axios.get(`${API_URL}/conversations/${userId}`)
       setConversations(res.data)
-      if (res.data.length > 0 && !activeConversationId) {
+      if (res.data.length > 0 && !activeConversationId && !isNewUpload) {
         loadConversationMessages(res.data[0].conversation_id, res.data[0].pdf_id)
       }
     } catch (err) {

@@ -41,9 +41,12 @@ export default function App() {
     delete axios.defaults.headers.common['Authorization']
   }
 
+  const [isNewUpload, setIsNewUpload] = useState(false)
+
   const handleUploadSuccess = (pdfId) => {
     setActivePdfId(pdfId)
     localStorage.setItem('documind_active_pdf_id', pdfId)
+    setIsNewUpload(true)
     setActiveTab('chat')
   }
 
@@ -121,7 +124,14 @@ export default function App() {
       {/* Main Content Area */}
       <main className="flex-1">
         {activeTab === 'upload' && <UploadPage userId={user?.id} onUploadSuccess={handleUploadSuccess} />}
-        {activeTab === 'chat' && <ChatPage userId={user?.id} activePdfId={activePdfId} />}
+        {activeTab === 'chat' && (
+          <ChatPage
+            userId={user?.id}
+            activePdfId={activePdfId}
+            isNewUpload={isNewUpload}
+            onSessionStarted={() => setIsNewUpload(false)}
+          />
+        )}
         {activeTab === 'metrics' && <MetricsPage activePdfId={activePdfId} />}
       </main>
     </div>
