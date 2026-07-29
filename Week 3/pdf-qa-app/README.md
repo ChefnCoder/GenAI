@@ -1,6 +1,6 @@
-# ⚡ DocuMind — Enterprise-Grade RAG PDF Q&A Platform
+# ⚡ Parchment AI — Enterprise-Grade RAG PDF Q&A Platform
 
-DocuMind is a production-grade, AI-powered document intelligence platform. Users can upload PDF documents, ask context-aware questions with multi-turn conversation memory, view precise source text citations, and monitor real-time query telemetry (tokens, cost, latency, hallucination rates, and similarity scores).
+Parchment AI is a production-grade, AI-powered document intelligence platform. Users can upload PDF documents, ask context-aware questions with multi-turn conversation memory, view precise source text citations, and monitor real-time query telemetry (tokens, cost, latency, hallucination rates, and similarity scores).
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Tech Stack](https://img.shields.io/badge/tech--stack-React%20%7C%20Node.js%20%7C%20ChromaDB%20%7C%20PostgreSQL%20%7C%20Gemini-indigo.svg)
