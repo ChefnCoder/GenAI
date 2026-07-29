@@ -57,8 +57,12 @@ export default function App() {
       {/* Header / Navbar */}
       <header className="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/30">
+          <div
+            onClick={() => setActiveTab('upload')}
+            className="flex items-center gap-3 cursor-pointer group"
+            title="Go to Home / Upload"
+          >
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
@@ -106,12 +110,14 @@ export default function App() {
               <div className="flex items-center gap-3 pl-2 border-l border-slate-800">
                 <div className="flex items-center gap-2 text-xs font-medium text-slate-300 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
                   <UserIcon className="w-3.5 h-3.5 text-indigo-400" />
-                  <span className="max-w-[120px] truncate">{user.email}</span>
+                  <span className="max-w-[130px] truncate capitalize">
+                    {user.name || (user.email === 'user1@example.com' ? 'Demo User' : user.email.split('@')[0])}
+                  </span>
                 </div>
                 <button
                   onClick={handleLogout}
                   title="Logout"
-                  className="p-2 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg border border-slate-800 transition"
+                  className="p-2 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg border border-slate-800 transition cursor-pointer"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>

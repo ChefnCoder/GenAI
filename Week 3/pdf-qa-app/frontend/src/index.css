@@ -6,6 +6,10 @@
     color: #f8fafc;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
+
+  button, a, [role="button"] {
+    cursor: pointer;
+  }
 }
 
 /* Custom scrollbars */
